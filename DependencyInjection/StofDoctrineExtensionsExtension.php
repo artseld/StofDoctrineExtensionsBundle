@@ -22,6 +22,7 @@ class StofDoctrineExtensionsExtension extends Extension
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('listeners.xml');
+        $loader->load('services.xml');
 
         $container->setParameter('stof_doctrine_extensions.default_locale', $config['default_locale']);
         $container->setParameter('stof_doctrine_extensions.translation_fallback', $config['translation_fallback']);

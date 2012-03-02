@@ -1,0 +1,22 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block gedmo_tree_widget %}
+{% spaceless %}
+    <table {{ block('widget_container_attributes') }} style="margin-left: 20px;">
+        {% for child in form %}
+            {% set option = child.vars.label %}
+            <tr id="node-{{ option.id }}"{% if option.parent is not null %}
+                class="child-of-node-{{ option.parent }}"
+            {% endif %}><td>
+            {{ form_widget(child) }}
+            {{ form_label(child, option.title, { 'attr' : { 'asterisk' : false } }) }}
+            </td></tr>
+        {% endfor %}
+    </table>
+    <script type="text/javascript">
+        $('#{{form.vars.id}}').treeTable({
+            initialState : "expanded"
+        });
+    </script>
+{% endspaceless %}
+{% endblock gedmo_tree_widget %}
